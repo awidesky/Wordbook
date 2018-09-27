@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "wordbook_VB", "wordbook_VB\wordbook_VB.vbproj", "{3533B361-9FDD-491B-8D97-BB8AEF768DBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3533B361-9FDD-491B-8D97-BB8AEF768DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3533B361-9FDD-491B-8D97-BB8AEF768DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3533B361-9FDD-491B-8D97-BB8AEF768DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3533B361-9FDD-491B-8D97-BB8AEF768DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {362E2960-DF70-4DE7-8974-2841F4D81206}
+	EndGlobalSection
+EndGlobal
