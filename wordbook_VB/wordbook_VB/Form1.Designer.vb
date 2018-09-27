@@ -22,10 +22,29 @@ Partial Class Form1
     '코드 편집기에서는 수정하지 마세요.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container()
+        Me.Lunch = New System.Windows.Forms.Button()
+        Me.SuspendLayout()
+        '
+        'Lunch
+        '
+        Me.Lunch.Location = New System.Drawing.Point(397, 116)
+        Me.Lunch.Name = "Lunch"
+        Me.Lunch.Size = New System.Drawing.Size(75, 23)
+        Me.Lunch.TabIndex = 0
+        Me.Lunch.Text = "Lunch"
+        Me.Lunch.UseVisualStyleBackColor = True
+        '
+        'Form1
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Lunch)
+        Me.Name = "Form1"
         Me.Text = "Form1"
+        Me.ResumeLayout(False)
+
     End Sub
 
+    Friend WithEvents Lunch As Button
 End Class
