@@ -11,7 +11,7 @@ import java.util.Random;
  * 
  * This project can be used for memorize English vocabulary easier.
  * 
- * to run this program, use cmd command : java -jar wordbook.jar option1 option2 option3 option4 option5 option6 option7 option8
+ * to run this program in command, not using normal way(lunch by GUI made in VB .net), use this command : java -jar wordbook.jar option1 option2 option3 option4 option5 option6 option7 option8
  * option1 = name of file which contains Korean words.
  * option2 = name of file which contains English words.
  * option3 = name of file which will made by this program and contains randomized English words. If you do not want to make this file, type null.
@@ -23,6 +23,7 @@ import java.util.Random;
  * 
  * Examples : java -jar wordbook.jar kor eng mykor myeng myran O O O
  * This will read words of kor.txt, eng.txt and make mykor.txt, myeng.txt, myran.txt
+ *
  * 
  * */
 
