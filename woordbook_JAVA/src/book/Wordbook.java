@@ -38,7 +38,7 @@ public class Wordbook {
 		if (args.length != 8) {
 		
 			System.err.println("옵션을 입력하세요");
-			System.exit(1);
+			return;
 			
 		}
 		
