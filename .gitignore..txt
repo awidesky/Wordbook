@@ -1,3 +1,0 @@
-/.metadata/
-/woordbook_JAVA/.settiings/
-/woordbook_JAVA/bin/
