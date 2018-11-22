@@ -6,12 +6,16 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame implements ActionListener{
@@ -20,7 +24,8 @@ public class GUI extends JFrame implements ActionListener{
 	private JButton btn_kor, btn_eng, btn_launch;
 	private JTextField tfd_kor, tfd_eng;
 	private JCheckBox cbx_kor, cbx_eng, cbx_ran;
-	
+	private JFileChooser jfc;
+	private File input_kor, input_eng;
 	
 	public GUI() {
 		
@@ -30,9 +35,11 @@ public class GUI extends JFrame implements ActionListener{
 		setLayout(new GridLayout(3, 1));
 		setResizable(false);
 		
-		SourcePanel = new JPanel(); //new GridLayout(2, 2, 5, 15)
+		jfc = new JFileChooser();
+		
+		SourcePanel = new JPanel(); 
 		OptionPanel = new JPanel();
-		LaunchPanel = new JPanel(); //new BorderLayout()
+		LaunchPanel = new JPanel(); 
 		
 		SourcePanel.setLayout(new FlowLayout(NORMAL, 10, 15));
 		OptionPanel.setLayout(new FlowLayout());
@@ -41,12 +48,37 @@ public class GUI extends JFrame implements ActionListener{
 		btn_kor = new JButton("찾아보기");
 		btn_eng = new JButton("찾아보기");
 		btn_launch = new JButton("단어장 제작!");
+		
 		btn_kor.setPreferredSize(new Dimension(100, 30));
 		btn_eng.setPreferredSize(new Dimension(100, 30));
 		btn_launch.setPreferredSize(new Dimension(130, 30));
+		
 		btn_kor.addActionListener((e) -> {
 			
+		    jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
+	        jfc.addChoosableFileFilter(new FileNameExtensionFilter("txt 파일", "txt"));
+			if (jfc.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
+				
+				JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
+				return;
+				
+			}
 			
+			input_kor = jfc.getSelectedFile();
+			
+		});
+		btn_eng.addActionListener((e) -> {
+			
+		    jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
+	        jfc.addChoosableFileFilter(new FileNameExtensionFilter("txt 파일", "txt"));
+			if (jfc.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
+				
+				JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
+				return;
+				
+			}
+			
+			input_kor = jfc.getSelectedFile();
 			
 		});
 		
