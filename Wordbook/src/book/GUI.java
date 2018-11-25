@@ -4,25 +4,23 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 @SuppressWarnings("serial")
-public class GUI extends JFrame implements ActionListener{
+public class GUI extends JFrame{
 	
 	private JPanel SourcePanel, OptionPanel, LaunchPanel;
 	private JButton btn_kor, btn_eng, btn_launch;
-	private JTextField tfd_kor, tfd_eng;
+	private JLabel tlb_kor, tlb_eng;
 	private JCheckBox cbx_kor, cbx_eng, cbx_ran;
 	private JFileChooser jfc;
 	private File input_kor, input_eng;
@@ -31,11 +29,13 @@ public class GUI extends JFrame implements ActionListener{
 		
 		setTitle("랜덤 영단어장");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(335,330);
+		setSize(500,330);
 		setLayout(new GridLayout(3, 1));
 		setResizable(false);
 		
 		jfc = new JFileChooser();
+		jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
+	    jfc.addChoosableFileFilter(new FileNameExtensionFilter("txt 파일", "txt"));
 		
 		SourcePanel = new JPanel(); 
 		OptionPanel = new JPanel();
@@ -55,8 +55,6 @@ public class GUI extends JFrame implements ActionListener{
 		
 		btn_kor.addActionListener((e) -> {
 			
-		    jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
-	        jfc.addChoosableFileFilter(new FileNameExtensionFilter("txt 파일", "txt"));
 			if (jfc.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
 				
 				JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
@@ -64,13 +62,12 @@ public class GUI extends JFrame implements ActionListener{
 				
 			}
 			
+			tlb_kor.setText(tlb_kor.getText() + jfc.getSelectedFile().getAbsolutePath());
 			input_kor = jfc.getSelectedFile();
 			
 		});
 		btn_eng.addActionListener((e) -> {
 			
-		    jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
-	        jfc.addChoosableFileFilter(new FileNameExtensionFilter("txt 파일", "txt"));
 			if (jfc.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
 				
 				JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
@@ -78,22 +75,29 @@ public class GUI extends JFrame implements ActionListener{
 				
 			}
 			
-			input_kor = jfc.getSelectedFile();
+			tlb_eng.setText(tlb_eng.getText() + jfc.getSelectedFile().getAbsolutePath());
+			input_eng = jfc.getSelectedFile();
+			
+		});
+		btn_launch.addActionListener((e) -> {
+			
+			Object[] obj = {input_eng, input_kor, cbx_eng.isSelected(), cbx_kor.isSelected(), cbx_ran.isSelected()};
+			Wordbook.launch(obj);
 			
 		});
 		
-		tfd_kor = new JTextField();
-		tfd_eng = new JTextField();
-		tfd_kor.setPreferredSize(new Dimension(190, 30));
-		tfd_eng.setPreferredSize(new Dimension(190, 30));
+		tlb_kor = new JLabel("한글 단어 : ");
+		tlb_eng = new JLabel("영어 단어 : ");
+		tlb_kor.setPreferredSize(new Dimension(360, 30));
+		tlb_eng.setPreferredSize(new Dimension(360, 30));
 		
 		cbx_kor = new JCheckBox("한글 단어장 생성");
 		cbx_eng = new JCheckBox("영어 단어장 생성");
 		cbx_ran = new JCheckBox("한글&영어 랜덤 영어장 생성");
 		
-		SourcePanel.add(tfd_kor);
+		SourcePanel.add(tlb_kor);
 		SourcePanel.add(btn_kor);
-		SourcePanel.add(tfd_eng);
+		SourcePanel.add(tlb_eng);
 		SourcePanel.add(btn_eng);
 		
 		OptionPanel.add(cbx_kor);
@@ -115,12 +119,6 @@ public class GUI extends JFrame implements ActionListener{
 	public static void main(String[] args) {
 
 		new GUI();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

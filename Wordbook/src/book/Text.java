@@ -11,14 +11,14 @@ import java.util.ArrayList;
 
 public class Text {
 
-	public static ArrayList<String> goget(String p) {
+	public static ArrayList<String> goget(File p) {
 		
 		ArrayList<String> al = new ArrayList<String>();
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(p));
 		} catch (FileNotFoundException e) {
-			System.err.println("텍스트 파일 " + p + "(이)가 존재하지않습니다.");
+			System.err.println("텍스트 파일 " + p.getPath() + "(이)가 존재하지않습니다.");
 		}
 		
 		while (true) {
@@ -27,7 +27,7 @@ public class Text {
 			try {
 				line = br.readLine();
 			} catch (IOException e) {
-				System.err.println(p + "(을)를 읽어올 수 없습니다.");
+				System.err.println(p.getPath() + "(을)를 읽어올 수 없습니다.");
 			}
 			
 			if (line == null) break;
