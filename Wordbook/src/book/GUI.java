@@ -18,9 +18,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 @SuppressWarnings("serial")
 public class GUI extends JFrame{
 	
-	private JPanel SourcePanel, OptionPanel, LaunchPanel;
-	private JButton btn_kor, btn_eng, btn_launch;
-	private JLabel tlb_kor, tlb_eng;
+	private JPanel SourcePanel, OptionPanel, SavePanel, LaunchPanel;
+	private JButton btn_kor, btn_eng, btn_launch, btn_save_kor, btn_save_eng;
+	private JLabel tlb_kor, tlb_eng, tlb_save_kor, tlb_save_eng;
 	private JCheckBox cbx_kor, cbx_eng, cbx_ran;
 	private JFileChooser jfc;
 	private File input_kor, input_eng;
@@ -29,7 +29,7 @@ public class GUI extends JFrame{
 		
 		setTitle("랜덤 영단어장");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(500,330);
+		setSize(500,3900);
 		setLayout(new GridLayout(3, 1));
 		setResizable(false);
 		
@@ -40,18 +40,23 @@ public class GUI extends JFrame{
 		SourcePanel = new JPanel(); 
 		OptionPanel = new JPanel();
 		LaunchPanel = new JPanel(); 
+		SavePanel = new JPanel();
 		
 		SourcePanel.setLayout(new FlowLayout(NORMAL, 10, 15));
 		OptionPanel.setLayout(new FlowLayout());
 		LaunchPanel.setLayout(new FlowLayout());
+		SavePanel.setLayout(new FlowLayout(NORMAL, 10, 15));
 		
 		btn_kor = new JButton("찾아보기");
 		btn_eng = new JButton("찾아보기");
 		btn_launch = new JButton("단어장 제작!");
-		
+		btn_save_kor = new JButton("찾아보기");
+		btn_save_eng = new JButton("찾아보기");
 		btn_kor.setPreferredSize(new Dimension(100, 30));
 		btn_eng.setPreferredSize(new Dimension(100, 30));
 		btn_launch.setPreferredSize(new Dimension(130, 30));
+		btn_save_kor.setPreferredSize(new Dimension(100, 30));
+		btn_save_eng.setPreferredSize(new Dimension(100, 30));
 		
 		btn_kor.addActionListener((e) -> {
 			
@@ -88,8 +93,12 @@ public class GUI extends JFrame{
 		
 		tlb_kor = new JLabel("한글 단어 : ");
 		tlb_eng = new JLabel("영어 단어 : ");
+		tlb_save_kor = new JLabel("한글 단어장 저장경로...");
+		tlb_save_eng = new JLabel("영어 단어장 저장경로...");
 		tlb_kor.setPreferredSize(new Dimension(360, 30));
 		tlb_eng.setPreferredSize(new Dimension(360, 30));
+		tlb_save_kor.setPreferredSize(new Dimension(360, 30));
+		tlb_save_eng.setPreferredSize(new Dimension(360, 30));
 		
 		cbx_kor = new JCheckBox("한글 단어장 생성");
 		cbx_eng = new JCheckBox("영어 단어장 생성");
@@ -106,9 +115,15 @@ public class GUI extends JFrame{
 		
 		LaunchPanel.add(btn_launch, BorderLayout.CENTER);
 		
+		SavePanel.add(tlb_save_kor);
+		SavePanel.add(tlb_save_eng);
+		SavePanel.add(btn_save_kor);
+		SavePanel.add(btn_save_eng);
+		
 		add(SourcePanel);
 		add(OptionPanel);
 		add(LaunchPanel);
+		add(SavePanel);
 		
 		setVisible(true);
 	}
