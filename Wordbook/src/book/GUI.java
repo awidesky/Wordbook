@@ -1,6 +1,7 @@
 package book;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -20,7 +21,7 @@ public class GUI extends JFrame{
 	
 	private JPanel SourcePanel, OptionPanel, SavePanel, LaunchPanel;
 	private JButton btn_kor, btn_eng, btn_launch, btn_save_kor, btn_save_eng;
-	private JLabel tlb_kor, tlb_eng, tlb_save_kor, tlb_save_eng;
+	private JLabel tlb_kor, tlb_eng, tlb_save_kor, tlb_save_eng, tlb_state;
 	private JCheckBox cbx_kor, cbx_eng, cbx_ran;
 	private JFileChooser jfc;
 	private File input_kor, input_eng;
@@ -29,8 +30,8 @@ public class GUI extends JFrame{
 		
 		setTitle("랜덤 영단어장");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(500,3900);
-		setLayout(new GridLayout(3, 1));
+		setSize(500,400);
+		setLayout(new GridLayout(4, 1));
 		setResizable(false);
 		
 		jfc = new JFileChooser();
@@ -43,7 +44,7 @@ public class GUI extends JFrame{
 		SavePanel = new JPanel();
 		
 		SourcePanel.setLayout(new FlowLayout(NORMAL, 10, 15));
-		OptionPanel.setLayout(new FlowLayout());
+		OptionPanel.setLayout(new FlowLayout(NORMAL, 10, 15));
 		LaunchPanel.setLayout(new FlowLayout());
 		SavePanel.setLayout(new FlowLayout(NORMAL, 10, 15));
 		
@@ -57,6 +58,7 @@ public class GUI extends JFrame{
 		btn_launch.setPreferredSize(new Dimension(130, 30));
 		btn_save_kor.setPreferredSize(new Dimension(100, 30));
 		btn_save_eng.setPreferredSize(new Dimension(100, 30));
+		btn_launch.setBackground(Color.ORANGE);
 		
 		btn_kor.addActionListener((e) -> {
 			
@@ -95,6 +97,7 @@ public class GUI extends JFrame{
 		tlb_eng = new JLabel("영어 단어 : ");
 		tlb_save_kor = new JLabel("한글 단어장 저장경로...");
 		tlb_save_eng = new JLabel("영어 단어장 저장경로...");
+		tlb_state = new JLabel();
 		tlb_kor.setPreferredSize(new Dimension(360, 30));
 		tlb_eng.setPreferredSize(new Dimension(360, 30));
 		tlb_save_kor.setPreferredSize(new Dimension(360, 30));
@@ -116,20 +119,26 @@ public class GUI extends JFrame{
 		LaunchPanel.add(btn_launch, BorderLayout.CENTER);
 		
 		SavePanel.add(tlb_save_kor);
-		SavePanel.add(tlb_save_eng);
 		SavePanel.add(btn_save_kor);
+		SavePanel.add(tlb_save_eng);
 		SavePanel.add(btn_save_eng);
 		
 		add(SourcePanel);
 		add(OptionPanel);
-		add(LaunchPanel);
 		add(SavePanel);
+		add(LaunchPanel);
 		
 		setVisible(true);
+		
+		new Thread(() -> {
+			
+			while (true)
+				
+				tlb_state.setText(Wordbook.state);
+			
+		}).run();
+		
 	}
-	
-	
-	
 
 	public static void main(String[] args) {
 

@@ -17,6 +17,8 @@ import java.util.Random;
 
 public class Wordbook {
 
+	public static String state; 
+	
 	public static void launch(Object[] args) {
 
 		ArrayList<String> book = new ArrayList<String>();
@@ -55,13 +57,13 @@ public class Wordbook {
 		}		
 		
 		
-		System.out.println("적는 중...");
+		state = "적는 중...";
 		
 		if ((boolean)args[2]) Text.putEng(eng1, "영어 단어장");
 		if ((boolean)args[3]) Text.putKor(kor1, "한글 단어장");
 		if ((boolean)args[4]) Text.putRan(book, "한글 + 영어 단어장");
 		
-		System.out.println("완료!");
+		state = ("완료!");
 		
 	}
 
