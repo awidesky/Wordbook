@@ -23,7 +23,7 @@ public class Wordbook {
 
 		ArrayList<String> book = new ArrayList<String>();
 		
-		System.out.println("읽어오는 중...");
+		state = "읽어오는 중...";
 		
 		ArrayList<String> eng = Text.goget((File)args[0]);
 		ArrayList<String> kor = Text.goget((File)args[1]);

@@ -18,7 +18,7 @@ public class Text {
 		try {
 			br = new BufferedReader(new FileReader(p));
 		} catch (FileNotFoundException e) {
-			Wordbook.state = ("텍스트 파일 " + p.getPath() + "(이)가 존재하지않습니다.");
+			Wordbook.state = ("텍스트 파일 " + p.getPath() + "(이)가 존재하지 않거나 찾을 수 없습니다!");
 		}
 		
 		while (true) {
@@ -27,7 +27,7 @@ public class Text {
 			try {
 				line = br.readLine();
 			} catch (IOException e) {
-				Wordbook.state = (p.getPath() + "(을)를 읽어올 수 없습니다.");
+				Wordbook.state = (p.getPath() + "(을)를 읽어올 수 없습니다!");
 			}
 			
 			if (line == null) break;
@@ -39,7 +39,7 @@ public class Text {
 		try {
 			br.close();
 		} catch (IOException e) {
-			Wordbook.state = ("BufferedReader를 close 하는 동안 문제가 발생했습니다");
+			Wordbook.state = ("BufferedReader를 close 하는 동안 문제가 발생했습니다!");
 		}
 		
 		return al;
@@ -57,14 +57,14 @@ public class Text {
 		try {
 			br1 = new BufferedWriter(new FileWriter(f1));
 		} catch (IOException e) {
-			Wordbook.state = ("영어 단어장을 만드는 준비를 하는 도중 문제가 발생했습니다.");
+			Wordbook.state = ("영어 단어장을 만드는 준비를 하는 도중 문제가 발생했습니다!");
 		}
 		
 		if (!f1.exists())
 			try {
 				f1.createNewFile();
 			} catch (IOException e) {
-				Wordbook.state = ("영어 단어장을 만드는 도중 문제가 발생했습니다.");
+				Wordbook.state = ("영어 단어장을 만드는 도중 문제가 발생했습니다!");
 			}
 		if (!f1.canWrite()) f1.setWritable(true);
 		
@@ -75,7 +75,7 @@ public class Text {
 				br1.newLine();
 				br1.flush();
 			} catch (IOException e) {
-				Wordbook.state = ("뜻 단어장에 적어넣는 도중 문제가 발생했습니다.");
+				Wordbook.state = ("뜻 단어장에 적어넣는 도중 문제가 발생했습니다!");
 			}
 				
 				
@@ -84,7 +84,7 @@ public class Text {
 		try {
 			br1.close();
 		} catch (IOException e) {
-			Wordbook.state = ("BufferedWriter를 close 하는 동안 문제가 발생했습니다");
+			Wordbook.state = ("BufferedWriter를 close 하는 동안 문제가 발생했습니다!");
 		}
 		
 	} //putEng end
@@ -101,7 +101,7 @@ public class Text {
 		try {
 			br2 = new BufferedWriter(new FileWriter(f2));
 		} catch (IOException e) {
-			Wordbook.state = ("뜻 단어장을 만드는 준비를 하는 도중 문제가 발생했습니다.");
+			Wordbook.state = ("뜻 단어장을 만드는 준비를 하는 도중 문제가 발생했습니다!");
 		}
 		
 
@@ -109,7 +109,7 @@ public class Text {
 			try {
 				f2.createNewFile();
 			} catch (IOException e) {
-				Wordbook.state = ("뜻 단어장을 만드는 도중 문제가 발생했습니다.");
+				Wordbook.state = ("뜻 단어장을 만드는 도중 문제가 발생했습니다!");
 			}
 		if (!f2.canWrite()) f2.setWritable(true);
 		
@@ -120,7 +120,7 @@ public class Text {
 				br2.newLine();
 				br2.flush();
 			} catch (IOException e) {
-				Wordbook.state = ("뜻 단어장에 적어넣는 도중 문제가 발생했습니다.");
+				Wordbook.state = ("뜻 단어장에 적어넣는 도중 문제가 발생했습니다!");
 			}
 				
 				
@@ -129,7 +129,7 @@ public class Text {
 		try {
 			br2.close();
 		} catch (IOException e) {
-			Wordbook.state = ("BufferedWriter를 close 하는 동안 문제가 발생했습니다");
+			Wordbook.state = ("BufferedWriter를 close 하는 동안 문제가 발생했습니다!");
 		}
 
 	} //putKor end
@@ -148,14 +148,14 @@ public class Text {
 		try {
 			br = new BufferedWriter(new FileWriter(f));
 		} catch (IOException e) {
-			Wordbook.state = ("영어+뜻 단어장을 만드는 준비를 하는 도중 문제가 발생했습니다.");
+			Wordbook.state = ("영어+뜻 단어장을 만드는 준비를 하는 도중 문제가 발생했습니다!");
 		}
 		
 		if (!f.exists())
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
-				Wordbook.state = ("영어+뜻 단어장을 만드는 도중 문제가 발생했습니다.");
+				Wordbook.state = ("영어+뜻 단어장을 만드는 도중 문제가 발생했습니다!");
 			}
 		if (!f.canWrite()) f.setWritable(true);
 		
@@ -166,7 +166,7 @@ public class Text {
 				br.newLine();
 				br.flush();
 			} catch (IOException e) {
-				Wordbook.state = ("영어+뜻 단어장에 적어넣는 도중 문제가 발생했습니다.");
+				Wordbook.state = ("영어+뜻 단어장에 적어넣는 도중 문제가 발생했습니다!");
 			} 
 			
 		}
@@ -174,10 +174,10 @@ public class Text {
 		try {
 			br.close();
 		} catch (IOException e) {
-			Wordbook.state = ("BufferedWriter를 close 하는 동안 문제가 발생했습니다");
+			Wordbook.state = ("BufferedWriter를 close 하는 동안 문제가 발생했습니다!");
 		}
 			
-	} //putRan
+	} //putRan end
 	
 	
 } //class end

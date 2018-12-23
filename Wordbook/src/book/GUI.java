@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.io.File;
 
@@ -30,7 +31,7 @@ public class GUI extends JFrame{
 		
 		setTitle("랜덤 영단어장");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(500,400);
+		setSize(500,470);
 		setLayout(new GridLayout(4, 1));
 		setResizable(false);
 		
@@ -73,6 +74,7 @@ public class GUI extends JFrame{
 			input_kor = jfc.getSelectedFile();
 			
 		});
+		
 		btn_eng.addActionListener((e) -> {
 			
 			if (jfc.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
@@ -86,7 +88,26 @@ public class GUI extends JFrame{
 			input_eng = jfc.getSelectedFile();
 			
 		});
+		
 		btn_launch.addActionListener((e) -> {
+			
+			if (tlb_eng.getText().equals("영어 단어 : ")) {
+				
+				Wordbook.state = "영어 단어 파일의 경로를 입력하지 않았습니다!";
+				return;
+				
+			} else if (tlb_eng.getText().equals("한글 단어 : ")) {
+				
+				Wordbook.state = "한글 단어 파일의 경로를 입력하지 않았습니다!";
+				return;
+				
+			} else if (!cbx_eng.isSelected() && !cbx_kor.isSelected() && !cbx_ran.isSelected()) {
+				
+				Wordbook.state = "제작할 단어장이 정해져 있지 않습니다!";
+				return;
+				
+			} 
+			
 			
 			Object[] obj = {input_eng, input_kor, cbx_eng.isSelected(), cbx_kor.isSelected(), cbx_ran.isSelected()};
 			Wordbook.launch(obj);
@@ -97,11 +118,15 @@ public class GUI extends JFrame{
 		tlb_eng = new JLabel("영어 단어 : ");
 		tlb_save_kor = new JLabel("한글 단어장 저장경로...");
 		tlb_save_eng = new JLabel("영어 단어장 저장경로...");
-		tlb_state = new JLabel();
+		tlb_state = new JLabel("");
 		tlb_kor.setPreferredSize(new Dimension(360, 30));
 		tlb_eng.setPreferredSize(new Dimension(360, 30));
 		tlb_save_kor.setPreferredSize(new Dimension(360, 30));
 		tlb_save_eng.setPreferredSize(new Dimension(360, 30));
+		tlb_state.setPreferredSize(new Dimension(500, 30));
+		
+		tlb_state.setHorizontalAlignment(JLabel.CENTER);
+		tlb_state.setFont(new Font(tlb_state.getFont().getFontName(), Font.ITALIC, tlb_state.getFont().getSize() + 10));
 		
 		cbx_kor = new JCheckBox("한글 단어장 생성");
 		cbx_eng = new JCheckBox("영어 단어장 생성");
@@ -117,6 +142,7 @@ public class GUI extends JFrame{
 		OptionPanel.add(cbx_ran);
 		
 		LaunchPanel.add(btn_launch, BorderLayout.CENTER);
+		LaunchPanel.add(tlb_state, BorderLayout.CENTER);
 		
 		SavePanel.add(tlb_save_kor);
 		SavePanel.add(btn_save_kor);
@@ -132,10 +158,9 @@ public class GUI extends JFrame{
 		
 		new Thread(() -> {
 			
-			while (true)
-				
+			while (true) {
 				tlb_state.setText(Wordbook.state);
-			
+			}
 		}).run();
 		
 	}
