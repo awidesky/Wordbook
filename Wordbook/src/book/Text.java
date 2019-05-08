@@ -46,9 +46,9 @@ public class Text {
 	} //goget end
 	
 	
-	public static void putEng(ArrayList<String> what, String name) {
+	public static void putEng(ArrayList<String> what, File path, String name) {
 		
-		String o = Paths.getcodepath() + "\\" + name + ".txt";
+		String o = path.getAbsolutePath() + "\\" + name + ".txt";
 		
 		File f1 = new File(o);
 		
@@ -90,9 +90,9 @@ public class Text {
 	} //putEng end
 	
 	
-	public static void putKor(ArrayList<String> what, String name) {
+	public static void putKor(ArrayList<String> what, File path, String name) {
 		
-		String p1 = Paths.getcodepath() + "\\" + name + ".txt";
+		String p1 = path.getAbsolutePath() + "\\" + name + ".txt";
 		
 		File f2 = new File(p1);
 		
@@ -137,9 +137,9 @@ public class Text {
 	
 	
 
-	public static void putRan(ArrayList<String> what, String name) {
+	public static void putRan(ArrayList<String> what, File path, String name) {
 	
-		String p = Paths.getcodepath() + "\\" + name + ".txt";
+		String p = path.getAbsolutePath() + "\\" + name + ".txt";
 		
 		File f = new File(p);
 		

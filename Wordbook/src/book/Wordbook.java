@@ -33,6 +33,7 @@ public class Wordbook {
 		
 		int total = eng.size();
 		
+		if (total != kor.size()) {System.out.println("크기 다름!!");}
 		
 			//랜덤하게 섞음
 		while(total != 0){
@@ -59,9 +60,9 @@ public class Wordbook {
 		
 		state = "적는 중...";
 		
-		if ((boolean)args[2]) Text.putEng(eng1, "영어 단어장");
-		if ((boolean)args[3]) Text.putKor(kor1, "한글 단어장");
-		if ((boolean)args[4]) Text.putRan(book, "한글 + 영어 단어장");
+		if ((boolean)args[3]) Text.putEng(eng1, (File)args[2], "영어 단어장");
+		if ((boolean)args[4]) Text.putKor(kor1, (File)args[2], "한글 단어장");
+		if ((boolean)args[5]) Text.putRan(book, (File)args[2], "한글 + 영어 단어장");
 		
 		state = ("완료!");
 		
