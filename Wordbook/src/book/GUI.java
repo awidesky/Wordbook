@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 
 import javax.swing.JButton;
@@ -18,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 @SuppressWarnings("serial")
-public class GUI extends JFrame{
+public class GUI extends JFrame implements WindowListener{
 	
 	private JPanel SourcePanel, OptionPanel, SavePanel, LaunchPanel;
 	private JButton btn_kor, btn_eng, btn_launch, btn_save;
@@ -26,14 +28,19 @@ public class GUI extends JFrame{
 	private JCheckBox cbx_kor, cbx_eng, cbx_ran;
 	private JFileChooser jfc, jfcs;
 	private File input_kor, input_eng, output;
+	private boolean isrunning;
 	
 	public GUI() {
 		
 		setTitle("랜덤 영단어장");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setSize(500,400);
 		setLayout(new GridLayout(4, 1));
 		setResizable(false);
+		
+		addWindowListener(this);
+		
+		this.isrunning = true;
 		
 		jfc = new JFileChooser();
 		jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
@@ -110,19 +117,14 @@ public class GUI extends JFrame{
 		
 		btn_launch.addActionListener((e) -> {
 			
-			if (tlb_eng.getText().equals("영어 단어 : ")) {
-				
-				Wordbook.state = "영어 단어 파일의 경로를 입력하지 않았습니다!";
-				return;
-				
-			} else if (tlb_kor.getText().equals("한글 단어 : ")) {
+			if (tlb_kor.getText().equals("한글 단어 : ")) {
 				
 				Wordbook.state = "한글 단어 파일의 경로를 입력하지 않았습니다!";
 				return;
 				
-			} else if (tlb_save.getText().equals("단어장 저장경로... : ")) {
+			}  else if (tlb_eng.getText().equals("영어 단어 : ")) {
 				
-				Wordbook.state = "단어장의 저장경로를 입력하지 않았습니다!";
+				Wordbook.state = "영어 단어 파일의 경로를 입력하지 않았습니다!";
 				return;
 				
 			} else if (!cbx_eng.isSelected() && !cbx_kor.isSelected() && !cbx_ran.isSelected()) {
@@ -130,7 +132,12 @@ public class GUI extends JFrame{
 				Wordbook.state = "제작할 단어장이 정해져 있지 않습니다!";
 				return;
 				
-			}
+			} else if (tlb_save.getText().equals("단어장 저장경로... : ")) {
+				
+				Wordbook.state = "단어장의 저장경로를 입력하지 않았습니다!";
+				return;
+				
+			} 
 			
 			
 			Object[] obj = {input_eng, input_kor, output, cbx_eng.isSelected(), cbx_kor.isSelected(), cbx_ran.isSelected()};
@@ -178,16 +185,63 @@ public class GUI extends JFrame{
 		
 		new Thread(() -> {
 			
-			while (true) {
+			while (this.isrunning) {
 				tlb_state.setText(Wordbook.state);
 			}
 		}).run();
 		
 	}
+	
 
 	public static void main(String[] args) {
 
 		new GUI();
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		 	
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		this.isrunning = false;
+        System.exit(0);
+        setVisible(false);
+        dispose();
 	}
 
 }

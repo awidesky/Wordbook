@@ -42,7 +42,7 @@ public class Wordbook {
 			
 			int num = r.nextInt(total);
 			
-			int whether = r.nextInt(2);
+			int whether = r.nextInt(2); //랜덤 영어장에 영어를 넣을지 한글을 넣을지 결정
 			
 			if (whether == 0) book.add(eng.get(num));
 			else book.add(kor.get(num));
