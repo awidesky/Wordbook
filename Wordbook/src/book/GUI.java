@@ -199,6 +199,16 @@ public class GUI extends JFrame implements WindowListener{
 	}
 
 	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		this.isrunning = false;
+        //System.exit(0);
+        setVisible(false);
+        dispose();
+	}
+	
+	/* useless implementations */
+	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
@@ -234,14 +244,5 @@ public class GUI extends JFrame implements WindowListener{
 		
 	}
 
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
-		this.isrunning = false;
-        System.exit(0);
-        setVisible(false);
-        dispose();
-	}
 
 }

@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 /**
  * 
  * @author Eugene, Hong
@@ -31,9 +33,24 @@ public class Wordbook {
 		ArrayList<String> kor1 = new ArrayList<String>();
 		ArrayList<String> eng1 = new ArrayList<String>();
 		
+		/* code for debugging
+		 * 
+		 * Iterator<String> it = eng.iterator(); Iterator<String> iu = kor.iterator();
+		 * 
+		 * while(it.hasNext()) System.out.println(it.next()); while(iu.hasNext())
+		 * System.out.println(iu.next());
+		 */
+		
+		
+		
 		int total = eng.size();
 		
-		if (total != kor.size()) {System.out.println("크기 다름!!");}
+		if (total != kor.size()) {
+			
+			JOptionPane.showMessageDialog(null, "영어단어와 한글 뜻의 개수가 다릅니다. 각 파일들을 다시 확인하세요.","경고",JOptionPane.WARNING_MESSAGE);
+			return;
+			
+		}
 		
 			//랜덤하게 섞음
 		while(total != 0){
