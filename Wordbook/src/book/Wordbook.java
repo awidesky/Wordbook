@@ -2,6 +2,7 @@ package book;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -29,15 +30,14 @@ public class Wordbook {
 		 * 
 		 * */
 		
-		ArrayList<String> book = new ArrayList<String>();
-		
 		state = "읽어오는 중...";
 		
-		ArrayList<String> eng = Text.goget((File)args[0]);
-		ArrayList<String> kor = Text.goget((File)args[1]);
+		List<String> eng = Text.goget((File)args[0]);
+		List<String> kor = Text.goget((File)args[1]);
 		
-		ArrayList<String> kor1 = new ArrayList<String>();
-		ArrayList<String> eng1 = new ArrayList<String>();
+		List<String> kor1 = new ArrayList<String>();
+		List<String> eng1 = new ArrayList<String>();
+		List<String> ran = new ArrayList<String>();
 		
 		/* code for debugging
 		 * 
@@ -65,10 +65,8 @@ public class Wordbook {
 			
 			int num = r.nextInt(total);
 			
-			boolean whether = r.nextBoolean(); //랜덤 영어장에 영어를 넣을지 한글을 넣을지 결정
-			
-			if (whether) book.add(eng.get(num));
-			else book.add(kor.get(num));
+			if (r.nextBoolean()) ran.add(eng.get(num));
+			else ran.add(kor.get(num));
 			
 			kor1.add(kor.get(num));
 			eng1.add(eng.get(num));
@@ -83,9 +81,9 @@ public class Wordbook {
 		
 		state = "적는 중...";
 		
-		if ((boolean)args[3]) Text.putEng(eng1, (File)args[2], "영어 단어장");
-		if ((boolean)args[4]) Text.putKor(kor1, (File)args[2], "한글 단어장");
-		if ((boolean)args[5]) Text.putRan(book, (File)args[2], "한글 + 영어 단어장");
+		if ((boolean)args[3]) Text.put(eng1, (File)args[2], "영어 단어장");
+		if ((boolean)args[4]) Text.put(kor1, (File)args[2], "한글 단어장");
+		if ((boolean)args[5]) Text.put(ran, (File)args[2], "한글 + 영어 단어장");
 		
 		state = "완료!";
 		

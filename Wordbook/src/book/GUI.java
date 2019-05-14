@@ -144,6 +144,7 @@ public class GUI extends JFrame {
 		tlb_eng = new JLabel("영어 단어 : ");
 		tlb_save = new JLabel("단어장 저장경로... : ");
 		tlb_state = new JLabel("");
+		
 		tlb_kor.setPreferredSize(new Dimension(360, 30));
 		tlb_eng.setPreferredSize(new Dimension(360, 30));
 		tlb_save.setPreferredSize(new Dimension(360, 30));
