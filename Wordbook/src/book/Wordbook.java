@@ -23,6 +23,12 @@ public class Wordbook {
 	
 	public static void launch(Object[] args) {
 
+		/*
+		 * @param (file)input_eng, (file)input_kor, (file)output_path, (Boolean)cbx_eng.isSelected(), (Boolean)cbx_kor.isSelected(), (Boolean)cbx_ran.isSelected()
+		 * 
+		 * 
+		 * */
+		
 		ArrayList<String> book = new ArrayList<String>();
 		
 		state = "읽어오는 중...";
@@ -59,9 +65,9 @@ public class Wordbook {
 			
 			int num = r.nextInt(total);
 			
-			int whether = r.nextInt(2); //랜덤 영어장에 영어를 넣을지 한글을 넣을지 결정
+			boolean whether = r.nextBoolean(); //랜덤 영어장에 영어를 넣을지 한글을 넣을지 결정
 			
-			if (whether == 0) book.add(eng.get(num));
+			if (whether) book.add(eng.get(num));
 			else book.add(kor.get(num));
 			
 			kor1.add(kor.get(num));
@@ -81,7 +87,7 @@ public class Wordbook {
 		if ((boolean)args[4]) Text.putKor(kor1, (File)args[2], "한글 단어장");
 		if ((boolean)args[5]) Text.putRan(book, (File)args[2], "한글 + 영어 단어장");
 		
-		state = ("완료!");
+		state = "완료!";
 		
 	}
 

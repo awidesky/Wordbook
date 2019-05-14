@@ -6,8 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.File;
 
 import javax.swing.JButton;
@@ -20,35 +18,32 @@ import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 @SuppressWarnings("serial")
-public class GUI extends JFrame implements WindowListener{
+public class GUI extends JFrame {
 	
 	private JPanel SourcePanel, OptionPanel, SavePanel, LaunchPanel;
 	private JButton btn_kor, btn_eng, btn_launch, btn_save;
 	private JLabel tlb_kor, tlb_eng, tlb_save, tlb_state;
 	private JCheckBox cbx_kor, cbx_eng, cbx_ran;
 	private JFileChooser jfc, jfcs;
-	private File input_kor, input_eng, output;
-	private boolean isrunning;
+	private File input_kor, input_eng, output_path;
 	
 	public GUI() {
 		
 		setTitle("랜덤 영단어장");
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(500,400);
 		setLayout(new GridLayout(4, 1));
 		setResizable(false);
 		
-		addWindowListener(this);
-		
-		this.isrunning = true;
-		
+
 		jfc = new JFileChooser();
 		jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
-	    jfc.addChoosableFileFilter(new FileNameExtensionFilter("txt 파일", "txt"));
-		
+		FileNameExtensionFilter ff = new FileNameExtensionFilter("txt 파일", "txt");
+	    jfc.addChoosableFileFilter(ff);
+	    jfc.setFileFilter(ff);
+	    
 	    jfcs = new JFileChooser();
 		jfcs.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
-	    jfcs.addChoosableFileFilter(new FileNameExtensionFilter("txt 파일", "txt"));
 		jfcs.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
 		SourcePanel = new JPanel(); 
@@ -75,7 +70,7 @@ public class GUI extends JFrame implements WindowListener{
 			
 			if (jfc.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
 				
-				JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다!","경고",JOptionPane.WARNING_MESSAGE);
 				return;
 				
 			}
@@ -89,7 +84,7 @@ public class GUI extends JFrame implements WindowListener{
 			
 			if (jfc.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
 				
-				JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다!","경고",JOptionPane.WARNING_MESSAGE);
 				return;
 				
 			}
@@ -104,13 +99,13 @@ public class GUI extends JFrame implements WindowListener{
 			
 			if (jfcs.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
 				
-				JOptionPane.showMessageDialog(null, "경로를 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "경로를 선택하지 않았습니다!","경고",JOptionPane.WARNING_MESSAGE);
 				return;
 				
 			}
 			
 			tlb_save.setText(tlb_save.getText() + jfcs.getSelectedFile().getAbsolutePath());
-			output = jfcs.getSelectedFile();
+			output_path = jfcs.getSelectedFile();
 			
 		});
 		
@@ -140,7 +135,7 @@ public class GUI extends JFrame implements WindowListener{
 			} 
 			
 			
-			Object[] obj = {input_eng, input_kor, output, cbx_eng.isSelected(), cbx_kor.isSelected(), cbx_ran.isSelected()};
+			Object[] obj = {input_eng, input_kor, output_path, cbx_eng.isSelected(), cbx_kor.isSelected(), cbx_ran.isSelected()};
 			Wordbook.launch(obj);
 			
 		});
@@ -183,12 +178,18 @@ public class GUI extends JFrame implements WindowListener{
 		
 		setVisible(true);
 		
-		new Thread(() -> {
+		Thread setstate = new Thread(() -> {
 			
-			while (this.isrunning) {
+			while (true) {
+				
 				tlb_state.setText(Wordbook.state);
+				
 			}
-		}).run();
+			
+		});
+		
+		setstate.setDaemon(true);
+		setstate.start();
 		
 	}
 	
@@ -196,52 +197,6 @@ public class GUI extends JFrame implements WindowListener{
 	public static void main(String[] args) {
 
 		new GUI();
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
-		this.isrunning = false;
-        //System.exit(0);
-        setVisible(false);
-        dispose();
-	}
-	
-	/* useless implementations */
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-		 	
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 
