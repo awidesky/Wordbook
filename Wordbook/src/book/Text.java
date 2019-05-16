@@ -32,7 +32,6 @@ public class Text {
 		
 			br.close();
 			
-			
 		} catch(IOException e) {
 			
 			String fmessage = p.getName() + "을 가져오지 못했습니다!";
@@ -50,7 +49,7 @@ public class Text {
 		
 		String o = path.getAbsolutePath() + "\\" + name + ".txt";
 		File f1 = new File(o);
-		BufferedWriter br1 = null;
+		BufferedWriter br1;
 
 		try {
 			
@@ -78,7 +77,7 @@ public class Text {
 		}
 		
 		
-	} //putEng end
+	} //put end
 	
 	
 } //class end

@@ -35,25 +35,26 @@ public class Wordbook {
 		List<String> eng = Text.goget((File)args[0]);
 		List<String> kor = Text.goget((File)args[1]);
 		
-		List<String> kor1 = new ArrayList<String>();
-		List<String> eng1 = new ArrayList<String>();
-		List<String> ran = new ArrayList<String>();
+		List<String> kor1 = new ArrayList<>();
+		List<String> eng1 = new ArrayList<>();
+		List<String> ran = new ArrayList<>();
 		
-		/* code for debugging
+		/* codes for debugging
 		 * 
-		 * Iterator<String> it = eng.iterator(); Iterator<String> iu = kor.iterator();
+		 * Iterator<String> it = eng.iterator();
+		 * Iterator<String> iu = kor.iterator();
 		 * 
-		 * while(it.hasNext()) System.out.println(it.next()); while(iu.hasNext())
-		 * System.out.println(iu.next());
+		 * while(it.hasNext()) System.out.println(it.next()); 
+		 * while(iu.hasNext()) System.out.println(iu.next());
+		 * 
 		 */
-		
 		
 		
 		int total = eng.size();
 		
 		if (total != kor.size()) {
 			
-			JOptionPane.showMessageDialog(null, "영어단어와 한글 뜻의 개수가 다릅니다. 각 파일들을 다시 확인하세요.","경고",JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "영어와 한글 단어의 개수가 다르거나 잘못된 파일을 선택했습니다. 각 파일들을 다시 확인하세요.","경고",JOptionPane.WARNING_MESSAGE);
 			return;
 			
 		}

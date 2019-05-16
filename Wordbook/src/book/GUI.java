@@ -1,4 +1,4 @@
-package book;
+   package book;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -80,6 +80,7 @@ public class GUI extends JFrame {
 			
 		});
 		
+		
 		btn_eng.addActionListener((e) -> {
 			
 			if (jfc.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
@@ -134,7 +135,6 @@ public class GUI extends JFrame {
 				
 			} 
 			
-			
 			Object[] obj = {input_eng, input_kor, output_path, cbx_eng.isSelected(), cbx_kor.isSelected(), cbx_ran.isSelected()};
 			Wordbook.launch(obj);
 			
@@ -142,7 +142,7 @@ public class GUI extends JFrame {
 		
 		tlb_kor = new JLabel("한글 단어 : ");
 		tlb_eng = new JLabel("영어 단어 : ");
-		tlb_save = new JLabel("단어장 저장경로... : ");
+		tlb_save = new JLabel("단어장 저장경로 : ");
 		tlb_state = new JLabel("");
 		
 		tlb_kor.setPreferredSize(new Dimension(360, 30));
@@ -192,7 +192,7 @@ public class GUI extends JFrame {
 		setstate.setDaemon(true);
 		setstate.start();
 		
-	}
+	} //constructor end
 	
 
 	public static void main(String[] args) {
