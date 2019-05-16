@@ -22,6 +22,11 @@ public class Wordbook {
 
 	public static String state; 
 	
+	public static void main(String[] args) {
+
+		new GUI();
+	}
+	
 	public static void launch(Object[] args) {
 
 		/*
@@ -59,7 +64,7 @@ public class Wordbook {
 			
 		}
 		
-			//·£´ýÇÏ°Ô ¼¯À½
+		//·£´ýÇÏ°Ô ¼¯À½
 		while(total != 0){
 			
 			Random r = new Random();

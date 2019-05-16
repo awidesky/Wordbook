@@ -16,11 +16,10 @@ public class Text {
 	public static ArrayList<String> goget(File p) {
 		
 		ArrayList<String> al = new ArrayList<String>();
-		BufferedReader br = null;
+		
 
-		try {
+		try(BufferedReader br = new BufferedReader(new FileReader(p));) {
 			
-			br = new BufferedReader(new FileReader(p));
 			String line = null;
 			
 			do {
@@ -30,8 +29,6 @@ public class Text {
 			
 			} while (line != null);
 		
-			br.close();
-			
 		} catch(IOException e) {
 			
 			String fmessage = p.getName() + "을 가져오지 못했습니다!";
@@ -49,11 +46,8 @@ public class Text {
 		
 		String o = path.getAbsolutePath() + "\\" + name + ".txt";
 		File f1 = new File(o);
-		BufferedWriter br1;
 
-		try {
-			
-			br1 = new BufferedWriter(new FileWriter(f1));
+		try(BufferedWriter br1 = new BufferedWriter(new FileWriter(f1))) {
 			
 			if (!f1.exists()) f1.createNewFile();
 			if (!f1.canWrite()) f1.setWritable(true);
@@ -62,12 +56,11 @@ public class Text {
 			
 				br1.write(word);
 				br1.newLine();
-				br1.flush();
 				
 			}
-	
-			br1.close();
 			
+			br1.flush();
+	
 		} catch(IOException e) {
 			
 			String msg = name + "을 만드는 중 문제가 발생했습니다!";

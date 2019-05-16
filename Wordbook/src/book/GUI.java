@@ -111,7 +111,6 @@ public class GUI extends JFrame {
 			
 		});
 		
-		
 		btn_launch.addActionListener((e) -> {
 			
 			if (tlb_kor.getText().equals("한글 단어 : ")) {
@@ -195,11 +194,5 @@ public class GUI extends JFrame {
 		
 	} //constructor end
 	
-
-	public static void main(String[] args) {
-
-		new GUI();
-	}
-
-
+	
 }
