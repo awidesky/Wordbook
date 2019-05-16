@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -16,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.io.File;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -39,7 +40,6 @@ public class GUI extends JFrame {
 		jfc = new JFileChooser();
 		jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
 		FileNameExtensionFilter ff = new FileNameExtensionFilter("txt 파일", "txt");
-	    jfc.addChoosableFileFilter(ff);
 	    jfc.setFileFilter(ff);
 	    
 	    jfcs = new JFileChooser();
@@ -60,6 +60,7 @@ public class GUI extends JFrame {
 		btn_eng = new JButton("찾아보기");
 		btn_launch = new JButton("단어장 제작!");
 		btn_save = new JButton("찾아보기");
+		
 		btn_kor.setPreferredSize(new Dimension(100, 30));
 		btn_eng.setPreferredSize(new Dimension(100, 30));
 		btn_launch.setPreferredSize(new Dimension(130, 30));
