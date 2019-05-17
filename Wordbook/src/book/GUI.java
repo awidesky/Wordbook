@@ -1,4 +1,4 @@
-package book;
+   package book;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -16,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.io.File;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -39,7 +40,6 @@ public class GUI extends JFrame {
 		jfc = new JFileChooser();
 		jfc.setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
 		FileNameExtensionFilter ff = new FileNameExtensionFilter("txt 파일", "txt");
-	    jfc.addChoosableFileFilter(ff);
 	    jfc.setFileFilter(ff);
 	    
 	    jfcs = new JFileChooser();
@@ -60,6 +60,7 @@ public class GUI extends JFrame {
 		btn_eng = new JButton("찾아보기");
 		btn_launch = new JButton("단어장 제작!");
 		btn_save = new JButton("찾아보기");
+		
 		btn_kor.setPreferredSize(new Dimension(100, 30));
 		btn_eng.setPreferredSize(new Dimension(100, 30));
 		btn_launch.setPreferredSize(new Dimension(130, 30));
@@ -79,6 +80,7 @@ public class GUI extends JFrame {
 			input_kor = jfc.getSelectedFile();
 			
 		});
+		
 		
 		btn_eng.addActionListener((e) -> {
 			
@@ -109,7 +111,6 @@ public class GUI extends JFrame {
 			
 		});
 		
-		
 		btn_launch.addActionListener((e) -> {
 			
 			if (tlb_kor.getText().equals("한글 단어 : ")) {
@@ -127,13 +128,12 @@ public class GUI extends JFrame {
 				Wordbook.state = "제작할 단어장이 정해져 있지 않습니다!";
 				return;
 				
-			} else if (tlb_save.getText().equals("단어장 저장경로... : ")) {
+			} else if (tlb_save.getText().equals("단어장 저장경로 : ")) {
 				
 				Wordbook.state = "단어장의 저장경로를 입력하지 않았습니다!";
 				return;
 				
 			} 
-			
 			
 			Object[] obj = {input_eng, input_kor, output_path, cbx_eng.isSelected(), cbx_kor.isSelected(), cbx_ran.isSelected()};
 			Wordbook.launch(obj);
@@ -142,8 +142,9 @@ public class GUI extends JFrame {
 		
 		tlb_kor = new JLabel("한글 단어 : ");
 		tlb_eng = new JLabel("영어 단어 : ");
-		tlb_save = new JLabel("단어장 저장경로... : ");
+		tlb_save = new JLabel("단어장 저장경로 : ");
 		tlb_state = new JLabel("");
+		
 		tlb_kor.setPreferredSize(new Dimension(360, 30));
 		tlb_eng.setPreferredSize(new Dimension(360, 30));
 		tlb_save.setPreferredSize(new Dimension(360, 30));
@@ -191,13 +192,7 @@ public class GUI extends JFrame {
 		setstate.setDaemon(true);
 		setstate.start();
 		
-	}
+	} //constructor end
 	
-
-	public static void main(String[] args) {
-
-		new GUI();
-	}
-
-
+	
 }

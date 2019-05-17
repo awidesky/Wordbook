@@ -3,181 +3,78 @@ package book;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
 
 public class Text {
 
 	public static ArrayList<String> goget(File p) {
 		
 		ArrayList<String> al = new ArrayList<String>();
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(p));
-		} catch (FileNotFoundException e) {
-			Wordbook.state = ("텍스트 파일 " + p.getPath() + "(이)가 존재하지 않거나 찾을 수 없습니다!");
-		}
 		
-		while (true) {
+
+		try(BufferedReader br = new BufferedReader(new FileReader(p));) {
 			
 			String line = null;
-			try {
-				line = br.readLine();
-			} catch (IOException e) {
-				Wordbook.state = (p.getPath() + "(을)를 읽어올 수 없습니다!");
+			
+			while((line = br.readLine()) != null) {
+				
+				al.add(line);
+				
 			}
-			
-			if (line == null) break;
-			
-			al.add(line);
-			
-		}
 		
-		try {
-			br.close();
-		} catch (IOException e) {
-			Wordbook.state = ("BufferedReader를 close 하는 동안 문제가 발생했습니다!");
+		} catch(IOException e) {
+			
+			String fmessage = p.getName() + "을 가져오지 못했습니다!";
+			Wordbook.state = fmessage;
+			JOptionPane.showMessageDialog(null, fmessage + "\n" + e.getMessage(),"경고",JOptionPane.WARNING_MESSAGE);
+			
 		}
 		
 		return al;
+		
 	} //goget end
 	
 	
-	public static void putEng(ArrayList<String> what, File path, String name) {
+	public static void put(List<String> what, File path, String name) {
 		
-		String o = path.getAbsolutePath() + "\\" + name + ".txt";
-		
-		File f1 = new File(o);
-		
-		BufferedWriter br1 = null;
+		File f1 = new File(path.getAbsolutePath() + "\\" + name + ".txt");
 
-		try {
-			br1 = new BufferedWriter(new FileWriter(f1));
-		} catch (IOException e) {
-			Wordbook.state = ("영어 단어장을 만드는 준비를 하는 도중 문제가 발생했습니다!");
-		}
-		
-		if (!f1.exists())
-			try {
-				f1.createNewFile();
-			} catch (IOException e) {
-				Wordbook.state = ("영어 단어장을 만드는 도중 문제가 발생했습니다!");
-			}
-		if (!f1.canWrite()) f1.setWritable(true);
-		
-		for (int i = 0; i < what.size(); i++) {
+		try(BufferedWriter br1 = new BufferedWriter(new FileWriter(f1))) {
 			
-			try {
-				br1.write((String)what.get(i));
+			if (!f1.exists()) f1.createNewFile();
+			if (!f1.canWrite()) f1.setWritable(true);
+		
+			for (String word : what) {
+			
+				br1.write(word);
 				br1.newLine();
-				br1.flush();
-			} catch (IOException e) {
-				Wordbook.state = ("뜻 단어장에 적어넣는 도중 문제가 발생했습니다!");
-			}
 				
-				
-		}
-	
-		try {
-			br1.close();
-		} catch (IOException e) {
-			Wordbook.state = ("BufferedWriter를 close 하는 동안 문제가 발생했습니다!");
-		}
-		
-	} //putEng end
-	
-	
-	public static void putKor(ArrayList<String> what, File path, String name) {
-		
-		String p1 = path.getAbsolutePath() + "\\" + name + ".txt";
-		
-		File f2 = new File(p1);
-		
-		BufferedWriter br2 = null;
-
-		try {
-			br2 = new BufferedWriter(new FileWriter(f2));
-		} catch (IOException e) {
-			Wordbook.state = ("뜻 단어장을 만드는 준비를 하는 도중 문제가 발생했습니다!");
-		}
-		
-
-		if (!f2.exists())
-			try {
-				f2.createNewFile();
-			} catch (IOException e) {
-				Wordbook.state = ("뜻 단어장을 만드는 도중 문제가 발생했습니다!");
 			}
-		if (!f2.canWrite()) f2.setWritable(true);
-		
-		for (int i = 0; i < what.size(); i++) {
 			
-			try {
-				br2.write((String)what.get(i));
-				br2.newLine();
-				br2.flush();
-			} catch (IOException e) {
-				Wordbook.state = ("뜻 단어장에 적어넣는 도중 문제가 발생했습니다!");
-			}
-				
-				
-		}
+			br1.flush();
 	
-		try {
-			br2.close();
-		} catch (IOException e) {
-			Wordbook.state = ("BufferedWriter를 close 하는 동안 문제가 발생했습니다!");
-		}
-
-	} //putKor end
-		
-	
-	
-
-	public static void putRan(ArrayList<String> what, File path, String name) {
-	
-		String p = path.getAbsolutePath() + "\\" + name + ".txt";
-		
-		File f = new File(p);
-		
-		BufferedWriter br = null;
-	
-		try {
-			br = new BufferedWriter(new FileWriter(f));
-		} catch (IOException e) {
-			Wordbook.state = ("영어+뜻 단어장을 만드는 준비를 하는 도중 문제가 발생했습니다!");
-		}
-		
-		if (!f.exists())
-			try {
-				f.createNewFile();
-			} catch (IOException e) {
-				Wordbook.state = ("영어+뜻 단어장을 만드는 도중 문제가 발생했습니다!");
-			}
-		if (!f.canWrite()) f.setWritable(true);
-		
-		for (int i = 0; i < what.size(); i++) {
+		} catch(IOException e) {
 			
-			try {
-				br.write((String)what.get(i));
-				br.newLine();
-				br.flush();
-			} catch (IOException e) {
-				Wordbook.state = ("영어+뜻 단어장에 적어넣는 도중 문제가 발생했습니다!");
-			} 
+			String msg = name + "을 만드는 중 문제가 발생했습니다!";
+			Wordbook.state = msg;
+			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"경고",JOptionPane.WARNING_MESSAGE);
+			
+		} catch (NullPointerException e) {
+			
+			String msg = name + "을 만드는 중 문제가 발생했습니다!\n단어 파일을 다시 확인하세요, 단어 사이에 빈 줄이 있을 수 있습니다.";
+			Wordbook.state = msg;
+			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"경고",JOptionPane.WARNING_MESSAGE);
 			
 		}
-
-		try {
-			br.close();
-		} catch (IOException e) {
-			Wordbook.state = ("BufferedWriter를 close 하는 동안 문제가 발생했습니다!");
-		}
-			
-	} //putRan end
+		
+		
+	} //put end
 	
 	
 } //class end
