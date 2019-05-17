@@ -2,6 +2,7 @@ package book;
 
 import java.io.File;
 import java.util.ArrayList;
+//import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -44,15 +45,15 @@ public class Wordbook {
 		List<String> eng1 = new ArrayList<>();
 		List<String> ran = new ArrayList<>();
 		
-		/* codes for debugging
+		/*
+		 * codes for debugging
 		 * 
-		 * Iterator<String> it = eng.iterator();
-		 * Iterator<String> iu = kor.iterator();
+		 * Iterator<String> it = eng.iterator(); Iterator<String> iu = kor.iterator();
 		 * 
-		 * while(it.hasNext()) System.out.println(it.next()); 
+		 * while(it.hasNext()) System.out.println(it.next()); System.out.println();
 		 * while(iu.hasNext()) System.out.println(iu.next());
-		 * 
-		 */
+		 */ 
+		 
 		
 		
 		int total = eng.size();
@@ -71,8 +72,8 @@ public class Wordbook {
 			
 			int num = r.nextInt(total);
 			
-			if (r.nextBoolean()) ran.add(eng.get(num));
-			else ran.add(kor.get(num));
+			if (r.nextBoolean()) { ran.add(eng.get(num)); }
+			else 				 { ran.add(kor.get(num)); }
 			
 			kor1.add(kor.get(num));
 			eng1.add(eng.get(num));

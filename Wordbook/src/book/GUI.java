@@ -128,7 +128,7 @@ public class GUI extends JFrame {
 				Wordbook.state = "제작할 단어장이 정해져 있지 않습니다!";
 				return;
 				
-			} else if (tlb_save.getText().equals("단어장 저장경로... : ")) {
+			} else if (tlb_save.getText().equals("단어장 저장경로 : ")) {
 				
 				Wordbook.state = "단어장의 저장경로를 입력하지 않았습니다!";
 				return;

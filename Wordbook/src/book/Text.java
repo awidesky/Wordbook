@@ -22,12 +22,11 @@ public class Text {
 			
 			String line = null;
 			
-			do {
-			
-				line = br.readLine();
+			while((line = br.readLine()) != null) {
+				
 				al.add(line);
-			
-			} while (line != null);
+				
+			}
 		
 		} catch(IOException e) {
 			
@@ -44,8 +43,7 @@ public class Text {
 	
 	public static void put(List<String> what, File path, String name) {
 		
-		String o = path.getAbsolutePath() + "\\" + name + ".txt";
-		File f1 = new File(o);
+		File f1 = new File(path.getAbsolutePath() + "\\" + name + ".txt");
 
 		try(BufferedWriter br1 = new BufferedWriter(new FileWriter(f1))) {
 			
@@ -64,6 +62,12 @@ public class Text {
 		} catch(IOException e) {
 			
 			String msg = name + "을 만드는 중 문제가 발생했습니다!";
+			Wordbook.state = msg;
+			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"경고",JOptionPane.WARNING_MESSAGE);
+			
+		} catch (NullPointerException e) {
+			
+			String msg = name + "을 만드는 중 문제가 발생했습니다!\n단어 파일을 다시 확인하세요, 단어 사이에 빈 줄이 있을 수 있습니다.";
 			Wordbook.state = msg;
 			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"경고",JOptionPane.WARNING_MESSAGE);
 			
