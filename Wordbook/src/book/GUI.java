@@ -76,7 +76,7 @@ public class GUI extends JFrame {
 				
 			}
 			
-			tlb_kor.setText(tlb_kor.getText() + jfc.getSelectedFile().getAbsolutePath());
+			tlb_kor.setText("한글 단어 : " + jfc.getSelectedFile().getAbsolutePath());
 			input_kor = jfc.getSelectedFile();
 			
 		});
@@ -91,7 +91,7 @@ public class GUI extends JFrame {
 				
 			}
 			
-			tlb_eng.setText(tlb_eng.getText() + jfc.getSelectedFile().getAbsolutePath());
+			tlb_eng.setText("영어 단어 : " + jfc.getSelectedFile().getAbsolutePath());
 			input_eng = jfc.getSelectedFile();
 			
 		});
@@ -106,7 +106,7 @@ public class GUI extends JFrame {
 				
 			}
 			
-			tlb_save.setText(tlb_save.getText() + jfcs.getSelectedFile().getAbsolutePath());
+			tlb_save.setText("단어장 저장경로 : " + jfcs.getSelectedFile().getAbsolutePath());
 			output_path = jfcs.getSelectedFile();
 			
 		});
