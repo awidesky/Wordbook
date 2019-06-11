@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -23,7 +22,7 @@ public class GUI extends JFrame {
 	
 	private JPanel SourcePanel, OptionPanel, SavePanel, LaunchPanel;
 	private JButton btn_kor, btn_eng, btn_launch, btn_save;
-	private JLabel tlb_kor, tlb_eng, tlb_save, tlb_state;
+	private JLabel tlb_kor, tlb_eng, tlb_save;
 	private JCheckBox cbx_kor, cbx_eng, cbx_ran;
 	private JFileChooser jfc, jfcs;
 	private File input_kor, input_eng, output_path;
@@ -65,7 +64,8 @@ public class GUI extends JFrame {
 		btn_eng.setPreferredSize(new Dimension(100, 30));
 		btn_launch.setPreferredSize(new Dimension(130, 30));
 		btn_save.setPreferredSize(new Dimension(100, 30));
-		btn_launch.setBackground(Color.ORANGE);
+		btn_launch.setPreferredSize(new Dimension(150, 60));
+		btn_launch.setBackground(new Color(0xff00ff));	//set color to hot pink
 		
 		btn_kor.addActionListener((e) -> {
 			
@@ -115,43 +115,44 @@ public class GUI extends JFrame {
 			
 			if (tlb_kor.getText().equals("한글 단어 : ")) {
 				
-				Wordbook.state = "한글 단어 파일의 경로를 입력하지 않았습니다!";
+				JOptionPane.showMessageDialog(null, "한글 단어 파일의 경로를 입력하지 않았습니다!" ,"경고",JOptionPane.WARNING_MESSAGE);
+				
 				return;
 				
 			}  else if (tlb_eng.getText().equals("영어 단어 : ")) {
 				
-				Wordbook.state = "영어 단어 파일의 경로를 입력하지 않았습니다!";
+				JOptionPane.showMessageDialog(null, "영어 단어 파일의 경로를 입력하지 않았습니다!" ,"경고",JOptionPane.WARNING_MESSAGE);
 				return;
 				
 			} else if (!cbx_eng.isSelected() && !cbx_kor.isSelected() && !cbx_ran.isSelected()) {
 				
-				Wordbook.state = "제작할 단어장이 정해져 있지 않습니다!";
+				JOptionPane.showMessageDialog(null, "제작할 단어장이 정해져 있지 않습니다!" ,"경고",JOptionPane.WARNING_MESSAGE);
 				return;
 				
 			} else if (tlb_save.getText().equals("단어장 저장경로 : ")) {
 				
-				Wordbook.state = "단어장의 저장경로를 입력하지 않았습니다!";
+				JOptionPane.showMessageDialog(null, "단어장의 저장경로를 입력하지 않았습니다!" ,"경고",JOptionPane.WARNING_MESSAGE); 
 				return;
 				
 			} 
 			
 			Object[] obj = {input_eng, input_kor, output_path, cbx_eng.isSelected(), cbx_kor.isSelected(), cbx_ran.isSelected()};
-			Wordbook.launch(obj);
+			
+			new Thread(() -> {
+				
+				Wordbook.launch(obj);
+				
+			}).start();
 			
 		});
 		
 		tlb_kor = new JLabel("한글 단어 : ");
 		tlb_eng = new JLabel("영어 단어 : ");
 		tlb_save = new JLabel("단어장 저장경로 : ");
-		tlb_state = new JLabel("");
 		
 		tlb_kor.setPreferredSize(new Dimension(360, 30));
 		tlb_eng.setPreferredSize(new Dimension(360, 30));
 		tlb_save.setPreferredSize(new Dimension(360, 30));
-		tlb_state.setPreferredSize(new Dimension(500, 30));
-		
-		tlb_state.setHorizontalAlignment(JLabel.CENTER);
-		tlb_state.setFont(new Font(tlb_state.getFont().getFontName(), Font.ITALIC, tlb_state.getFont().getSize() + 10));
 		
 		cbx_kor = new JCheckBox("한글 단어장 생성");
 		cbx_eng = new JCheckBox("영어 단어장 생성");
@@ -167,7 +168,6 @@ public class GUI extends JFrame {
 		OptionPanel.add(cbx_ran);
 		
 		LaunchPanel.add(btn_launch, BorderLayout.CENTER);
-		LaunchPanel.add(tlb_state, BorderLayout.CENTER);
 		
 		SavePanel.add(tlb_save);
 		SavePanel.add(btn_save);
@@ -178,19 +178,6 @@ public class GUI extends JFrame {
 		add(LaunchPanel);
 		
 		setVisible(true);
-		
-		Thread setstate = new Thread(() -> {
-			
-			while (true) {
-				
-				tlb_state.setText(Wordbook.state);
-				
-			}
-			
-		});
-		
-		setstate.setDaemon(true);
-		setstate.start();
 		
 	} //constructor end
 	

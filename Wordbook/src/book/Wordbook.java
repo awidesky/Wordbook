@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  * 
@@ -21,11 +22,13 @@ import javax.swing.JOptionPane;
 
 public class Wordbook {
 
-	public static String state; 
-	
 	public static void main(String[] args) {
 
-		new GUI();
+		SwingUtilities.invokeLater(()->{
+			
+			new GUI();
+			
+		});
 	}
 	
 	public static void launch(Object[] args) {
@@ -36,7 +39,6 @@ public class Wordbook {
 		 * 
 		 * */
 		
-		state = "읽어오는 중...";
 		
 		List<String> eng = Text.goget((File)args[0]);
 		List<String> kor = Text.goget((File)args[1]);
@@ -86,13 +88,11 @@ public class Wordbook {
 		}		
 		
 		
-		state = "적는 중...";
-		
 		if ((boolean)args[3]) Text.put(eng1, (File)args[2], "영어 단어장");
 		if ((boolean)args[4]) Text.put(kor1, (File)args[2], "한글 단어장");
 		if ((boolean)args[5]) Text.put(ran, (File)args[2], "한글 + 영어 단어장");
 		
-		state = "완료!";
+		JOptionPane.showMessageDialog(null, "제작 완료!","완료!",JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 

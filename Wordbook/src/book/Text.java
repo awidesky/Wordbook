@@ -31,13 +31,11 @@ public class Text {
 		} catch(IOException e) {
 			
 			String fmessage = p.getName() + "을 가져오지 못했습니다!";
-			Wordbook.state = fmessage;
 			JOptionPane.showMessageDialog(null, fmessage + "\n" + e.getMessage(),"경고",JOptionPane.WARNING_MESSAGE);
 			
 		} catch(Exception e) {
 			
 			String fmessage = p.getName() + "을 가져오지 못했습니다!";
-			Wordbook.state = fmessage;
 			JOptionPane.showMessageDialog(null, fmessage + "\n" + e.toString(),"경고",JOptionPane.WARNING_MESSAGE);
 			
 		}
@@ -68,19 +66,16 @@ public class Text {
 		} catch(IOException e) {
 			
 			String msg = name + "을 만드는 중 문제가 발생했습니다!";
-			Wordbook.state = msg;
 			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"경고",JOptionPane.WARNING_MESSAGE);
 			
 		} catch (NullPointerException e) {
 			
 			String msg = name + "을 만드는 중 문제가 발생했습니다!\n단어 파일을 다시 확인하세요, 단어 사이에 빈 줄이 있을 수 있습니다.";
-			Wordbook.state = msg;
 			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"경고",JOptionPane.WARNING_MESSAGE);
 			
 		} catch (Exception e) {
 			
 			String msg = name + "을 만드는 중 문제가 발생했습니다!\n단어 파일을 다시 확인하세요, 단어 사이에 빈 줄이 있을 수 있습니다.";
-			Wordbook.state = msg;
 			JOptionPane.showMessageDialog(null, msg + "\n" + e.toString(),"경고",JOptionPane.WARNING_MESSAGE);
 			
 		}
