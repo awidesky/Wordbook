@@ -138,11 +138,14 @@ public class GUI extends JFrame {
 			
 			Object[] obj = {input_eng, input_kor, output_path, cbx_eng.isSelected(), cbx_kor.isSelected(), cbx_ran.isSelected()};
 			
-			new Thread(() -> {
+			Thread worker = new Thread(() -> {
 				
 				Wordbook.launch(obj);
 				
-			}).start();
+			});
+			
+			worker.setDaemon(true);
+			worker.start();
 			
 		});
 		
