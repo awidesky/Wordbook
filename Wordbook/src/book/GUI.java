@@ -140,7 +140,15 @@ public class GUI extends JFrame {
 			
 			Thread worker = new Thread(() -> {
 				
-				Wordbook.launch(obj);
+				try {
+					
+					Wordbook.launch(obj);
+					
+				} catch (Exception e1) {
+					
+					System.err.println(e1.getMessage());
+					
+				}
 				
 			});
 			

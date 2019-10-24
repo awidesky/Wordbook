@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
  * @version 1.2.0
  * 
  * 
- * This project can be used for memorize English vocabulary easier.
+ * This project is used for memorize English vocabulary easier.
  * 
  * 
  * */
@@ -31,7 +31,7 @@ public class Wordbook {
 		});
 	}
 	
-	public static void launch(Object[] args) {
+	public static void launch(Object[] args) throws Exception {
 
 		/*
 		 * @param (file)input_eng, (file)input_kor, (file)output_path, (Boolean)cbx_eng.isSelected(), (Boolean)cbx_kor.isSelected(), (Boolean)cbx_ran.isSelected()
