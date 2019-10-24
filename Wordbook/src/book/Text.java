@@ -17,9 +17,14 @@ public class Text {
 
 	public static ArrayList<String> goget(File p) throws Exception {
 		
+		/**
+		 * 
+		 * read all lines from a txt file(parameter)
+		 * 
+		 * */
+		
 		ArrayList<String> al = new ArrayList<String>();
 		
-
 		try {
 			
 			//BufferedReader br = new BufferedReader(new FileReader(p));
@@ -57,6 +62,11 @@ public class Text {
 	
 	
 	public static void put(List<String> what, File path, String name) throws Exception {
+		
+		/*
+		 * make a txt file which contains text of given List to given path
+		 * 
+		 * */
 		
 		File f1 = new File(path.getAbsolutePath() + "\\" + name + ".txt");
 
