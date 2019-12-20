@@ -40,22 +40,14 @@ public class Text {
 			 * }
 			 */
 		
-		} catch(IOException e) {
+		} catch(Exception e) {
 			
 			String fmessage = p.getName() + "을 가져오지 못했습니다!";
 			JOptionPane.showMessageDialog(null, fmessage + "\n" + e.getMessage(),"경고",JOptionPane.WARNING_MESSAGE);
 			
 			throw new Exception("Process canceled");
 			
-		} catch(Exception e) {
-			
-			String fmessage = p.getName() + "을 가져오지 못했습니다!";
-			JOptionPane.showMessageDialog(null, fmessage + "\n" + e.toString(),"경고",JOptionPane.WARNING_MESSAGE);
-			
-			throw new Exception("Process canceled");
-			
-		}
-		
+		} 
 		return al;
 		
 	} //goget end
