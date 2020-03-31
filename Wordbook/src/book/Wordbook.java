@@ -15,8 +15,7 @@ import javax.swing.SwingUtilities;
  * @version 1.2.0
  * 
  * 
- * This project is used for memorize English vocabulary easier.
- * 
+ * main 메서드가 있는 클래스
  * 
  * 
  * */
@@ -57,7 +56,12 @@ public class Wordbook {
 		
 		if (total != kor.size()) {
 			
-			JOptionPane.showMessageDialog(null, "영어와 한글 단어의 개수가 다르거나 잘못된 파일을 선택했습니다. 각 파일들을 다시 확인하세요.","경고",JOptionPane.WARNING_MESSAGE);
+			SwingUtilities.invokeLater(()->{
+				
+				JOptionPane.showMessageDialog(null, "영어와 한글 단어의 개수가 다르거나 잘못된 파일을 선택했습니다. 각 파일들을 다시 확인하세요.","경고",JOptionPane.WARNING_MESSAGE);
+				
+			});
+		
 			return;
 			
 		}
@@ -87,7 +91,12 @@ public class Wordbook {
 		if ((boolean)args[4]) Text.put(kor1, (File)args[2], "한글 단어장");
 		if ((boolean)args[5]) Text.put(ran, (File)args[2], "한글 + 영어 단어장");
 		
-		JOptionPane.showMessageDialog(null, "제작 완료!","완료!",JOptionPane.INFORMATION_MESSAGE);
+		SwingUtilities.invokeLater(()->{
+			
+			JOptionPane.showMessageDialog(null, "제작 완료!","완료!",JOptionPane.INFORMATION_MESSAGE);
+			
+		});
+		
 		
 	}
 
