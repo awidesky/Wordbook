@@ -40,8 +40,8 @@ public class Text {
 		
 		} catch(Exception e) {
 			
-			String fmessage = p.getName() + "ï¿½ì“£ åª›ï¿½ï¿½ì¡‡ï¿½ì‚¤ï§ï¿½ ï§ì‚µë»½ï¿½ë’¿ï¿½ë•²ï¿½ë–!";
-			JOptionPane.showMessageDialog(null, fmessage + "\n" + e.getMessage(),"å¯ƒì„í€¬",JOptionPane.WARNING_MESSAGE);
+			String fmessage = p.getName() + "À» °¡Á®¿ÀÁö ¸øÇß½À´Ï´Ù!";	
+			JOptionPane.showMessageDialog(null, fmessage + "\n" + e.getMessage(),"°æ°í",JOptionPane.WARNING_MESSAGE);
 			
 			throw new Exception("Process canceled");
 			
@@ -76,22 +76,22 @@ public class Text {
 			
 		} catch(IOException e) {
 			
-			String msg = name + "ï¿½ì“£ ï§ëš®ë±¶ï¿½ë’— ä»¥ï¿½ è‡¾ëª„ì £åª›ï¿½ è«›ì’–ê¹®ï¿½ë»½ï¿½ë’¿ï¿½ë•²ï¿½ë–!";
-			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"å¯ƒì„í€¬",JOptionPane.WARNING_MESSAGE);
+			String msg = name + "À» ¸¸µå´Â Áß ¹®Á¦°¡ ¹ß»ıÇß½À´Ï´Ù!";
+			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"°æ°í",JOptionPane.WARNING_MESSAGE);
 			
 			throw new Exception("Process canceled");
 			
 		} catch (NullPointerException e) {
 			
-			String msg = name + "ï¿½ì“£ ï§ëš®ë±¶ï¿½ë’— ä»¥ï¿½ è‡¾ëª„ì £åª›ï¿½ è«›ì’–ê¹®ï¿½ë»½ï¿½ë’¿ï¿½ë•²ï¿½ë–!\nï¿½ë–’ï¿½ë¼± ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï¿½ë–ï¿½ë–† ï¿½ì†—ï¿½ì”¤ï¿½ë¸¯ï¿½ê½­ï¿½ìŠ‚, ï¿½ë–’ï¿½ë¼± ï¿½ê¶—ï¿½ì” ï¿½ë¿‰ é®ï¿½ ä»¥ê¾©ì”  ï¿½ì—³ï¿½ì“£ ï¿½ë‹” ï¿½ì—³ï¿½ë’¿ï¿½ë•²ï¿½ë–.";
-			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"å¯ƒì„í€¬",JOptionPane.WARNING_MESSAGE);
+			String msg = name + "À» ¸¸µå´Â Áß ¹®Á¦°¡ ¹ß»ıÇß½À´Ï´Ù!\n´Ü¾î ÆÄÀÏÀ» ´Ù½Ã È®ÀÎÇÏ¼¼¿ä, ´Ü¾î »çÀÌ¿¡ ºó ÁÙÀÌ ÀÖÀ» ¼ö ÀÖ½À´Ï´Ù.";
+			JOptionPane.showMessageDialog(null, msg + "\n" + e.getMessage(),"°æ°í",JOptionPane.WARNING_MESSAGE);
 			
 			throw new Exception("Process canceled");
 			
 		} catch (Exception e) {
 			
-			String msg = name + "ï¿½ì“£ ï§ëš®ë±¶ï¿½ë’— ä»¥ï¿½ è‡¾ëª„ì £åª›ï¿½ è«›ì’–ê¹®ï¿½ë»½ï¿½ë’¿ï¿½ë•²ï¿½ë–!\nï¿½ë–’ï¿½ë¼± ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï¿½ë–ï¿½ë–† ï¿½ì†—ï¿½ì”¤ï¿½ë¸¯ï¿½ê½­ï¿½ìŠ‚, ï¿½ë–’ï¿½ë¼± ï¿½ê¶—ï¿½ì” ï¿½ë¿‰ é®ï¿½ ä»¥ê¾©ì”  ï¿½ì—³ï¿½ì“£ ï¿½ë‹” ï¿½ì—³ï¿½ë’¿ï¿½ë•²ï¿½ë–.";
-			JOptionPane.showMessageDialog(null, msg + "\n" + e.toString(),"å¯ƒì„í€¬",JOptionPane.WARNING_MESSAGE);
+			String msg = name + "À» ¸¸µå´Â Áß ¹®Á¦°¡ ¹ß»ıÇß½À´Ï´Ù!\n´Ü¾î ÆÄÀÏÀ» ´Ù½Ã È®ÀÎÇÏ¼¼¿ä, ´Ü¾î »çÀÌ¿¡ ºó ÁÙÀÌ ÀÖÀ» ¼ö ÀÖ½À´Ï´Ù.";
+			JOptionPane.showMessageDialog(null, msg + "\n" + e.toString(),"°æ°í",JOptionPane.WARNING_MESSAGE);
 			
 			throw new Exception("Process canceled");
 			
